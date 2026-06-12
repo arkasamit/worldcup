@@ -26,39 +26,11 @@ body {
   overflow-x: hidden;
 }
 
-/* Watermark */
-.watermark {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-45deg);
-  font-size: 8rem;
-  font-weight: 900;
-  color: rgba(0, 212, 255, 0.08);
-  text-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 0;
-  letter-spacing: 20px;
-  text-transform: uppercase;
-  font-family: "Arial Black", sans-serif;
-}
-
-.watermark-sub {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  font-size: 3rem;
-  color: rgba(255, 107, 107, 0.12);
-  pointer-events: none;
-  z-index: 0;
-  font-weight: 800;
-}
-
+/* ===== HEADER ===== */
 .site-header {
   background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
   color: #fff;
-  padding: 40px 20px;
+  padding: clamp(20px, 5vw, 40px) 20px;
   text-align: center;
   border-bottom: 4px solid var(--accent);
   box-shadow: var(--shadow);
@@ -68,37 +40,40 @@ body {
 
 .site-header h1 {
   margin: 0;
-  font-size: 2.8rem;
+  font-size: clamp(1.4rem, 5vw, 2.8rem);
   font-weight: 800;
   text-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
   letter-spacing: 2px;
 }
 
 .site-header .subtitle {
-  margin: 12px 0 0;
+  margin: 10px 0 0;
   color: rgba(255, 255, 255, 0.9);
-  font-size: 1rem;
+  font-size: clamp(0.78rem, 2.5vw, 1rem);
   font-weight: 300;
 }
 
+/* ===== TABS ===== */
 .tabs-header {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   justify-content: center;
-  margin-top: 25px;
+  margin-top: 20px;
   flex-wrap: wrap;
+  padding: 0 10px;
 }
 
 .tab-btn {
-  padding: 10px 20px;
+  padding: 9px 18px;
   background: rgba(255, 255, 255, 0.15);
   border: 2px solid rgba(255, 255, 255, 0.3);
   color: rgba(255, 255, 255, 0.8);
-  font-size: 0.95rem;
+  font-size: clamp(0.82rem, 2.5vw, 0.95rem);
   font-weight: 600;
   cursor: pointer;
   border-radius: 8px;
   transition: all 300ms ease;
+  white-space: nowrap;
 }
 
 .tab-btn:hover {
@@ -113,31 +88,34 @@ body {
   box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
 }
 
+/* ===== LAYOUT ===== */
 .tab-content {
   display: none;
 }
 
 .tab-content.active {
   display: flex;
-  gap: 30px;
+  gap: 24px;
   width: 100%;
 }
 
 .container {
   display: flex;
-  gap: 30px;
+  gap: 24px;
   max-width: 1400px;
-  margin: 40px auto;
-  padding: 0 20px;
+  margin: 30px auto;
+  padding: 0 16px;
   position: relative;
   z-index: 1;
 }
 
+/* ===== SIDEBAR DATES ===== */
 .dates {
-  width: 320px;
+  width: 280px;
+  flex-shrink: 0;
   background: rgba(37, 45, 71, 0.5);
   border-radius: 16px;
-  padding: 20px;
+  padding: 18px;
   border: 2px solid var(--border);
   max-height: 680px;
   overflow-y: auto;
@@ -145,27 +123,27 @@ body {
 }
 
 .stage-selector {
-  margin-bottom: 20px;
-  padding-bottom: 15px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
   border-bottom: 2px solid var(--border);
 }
 
 .stage-selector label {
   display: block;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 7px;
   color: var(--text-secondary);
 }
 
 .stage-selector select {
   width: 100%;
-  padding: 10px;
+  padding: 9px 10px;
   background: rgba(26, 31, 58, 0.8);
   border: 2px solid var(--accent);
   border-radius: 8px;
   color: var(--text-primary);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   cursor: pointer;
   transition: all 300ms ease;
 }
@@ -180,29 +158,27 @@ body {
   box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
 }
 
+/* Custom scrollbar */
 .dates::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
-
 .dates::-webkit-scrollbar-track {
   background: transparent;
 }
-
 .dates::-webkit-scrollbar-thumb {
   background: var(--accent);
   border-radius: 10px;
-  transition: background 0.3s;
 }
-
 .dates::-webkit-scrollbar-thumb:hover {
   background: var(--accent-secondary);
 }
 
+/* ===== DATE BUTTONS ===== */
 .date-btn {
   display: block;
   width: 100%;
-  padding: 16px;
-  margin-bottom: 12px;
+  padding: 13px 14px;
+  margin-bottom: 10px;
   border-radius: 12px;
   border: 2px solid transparent;
   background: transparent;
@@ -215,32 +191,12 @@ body {
   overflow: hidden;
 }
 
-.date-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(0, 212, 255, 0.1),
-    transparent
-  );
-  transition: left 0.5s;
-}
-
 .date-btn:hover {
   border-color: var(--accent);
-  transform: translateX(8px);
+  transform: translateX(6px);
   background: rgba(0, 212, 255, 0.08);
-  box-shadow: 0 8px 20px rgba(0, 212, 255, 0.15);
+  box-shadow: 0 6px 16px rgba(0, 212, 255, 0.15);
   color: var(--text-primary);
-}
-
-.date-btn:hover::before {
-  left: 100%;
 }
 
 .date-btn.active {
@@ -248,30 +204,32 @@ body {
   color: var(--bg-dark);
   border-color: var(--accent);
   font-weight: 700;
-  box-shadow: 0 12px 32px rgba(0, 212, 255, 0.4);
-  transform: translateX(8px);
+  box-shadow: 0 10px 28px rgba(0, 212, 255, 0.4);
+  transform: translateX(6px);
 }
 
 .date-day {
   font-weight: 700;
   display: block;
-  font-size: 1.1rem;
-  margin-bottom: 4px;
+  font-size: 1rem;
+  margin-bottom: 3px;
 }
 
 .date-d {
-  font-size: 0.85rem;
-  opacity: 0.7;
+  font-size: 0.82rem;
+  opacity: 0.75;
 }
 
+/* ===== FIXTURES SECTION ===== */
 .fixtures {
   flex: 1;
+  min-width: 0;
   background: transparent;
   min-height: 400px;
 }
 
 .placeholder {
-  padding: 60px 40px;
+  padding: 50px 30px;
   border-radius: 16px;
   background: linear-gradient(
     135deg,
@@ -281,13 +239,13 @@ body {
   border: 2px dashed var(--border);
   color: var(--text-secondary);
   text-align: center;
-  font-size: 1.05rem;
-  font-weight: 300;
+  font-size: 1rem;
 }
 
+/* ===== MATCH CARDS ===== */
 .match-list {
   display: grid;
-  gap: 16px;
+  gap: 14px;
 }
 
 .match-card {
@@ -297,7 +255,7 @@ body {
     rgba(37, 45, 71, 0.7) 100%
   );
   border-radius: 14px;
-  padding: 22px;
+  padding: 18px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -325,8 +283,8 @@ body {
 }
 
 .match-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 24px 48px rgba(0, 212, 255, 0.25);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 212, 255, 0.25);
   border-left-color: var(--accent-secondary);
   background: linear-gradient(
     135deg,
@@ -342,17 +300,19 @@ body {
 .match-left {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 18px;
   flex: 1;
+  min-width: 0;
 }
 
 .team-flag {
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
-  height: 50px;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
   background: rgba(0, 212, 255, 0.1);
   border-radius: 10px;
 }
@@ -360,15 +320,19 @@ body {
 .teams {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   flex: 1;
+  min-width: 0;
 }
 
 .team-name {
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--text-primary);
   transition: color 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .match-card:hover .team-name {
@@ -378,31 +342,32 @@ body {
 .vs-text {
   text-align: center;
   color: var(--text-secondary);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 500;
   letter-spacing: 1px;
 }
 
 .match-meta {
   text-align: right;
-  min-width: 180px;
-  padding-left: 20px;
+  min-width: 170px;
+  padding-left: 16px;
+  flex-shrink: 0;
 }
 
 .stage {
   font-weight: 700;
   color: var(--accent);
-  font-size: 0.9rem;
-  margin-bottom: 10px;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
   background: rgba(0, 212, 255, 0.1);
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-radius: 6px;
   display: inline-block;
 }
 
 .time-info {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .date-time {
@@ -410,13 +375,7 @@ body {
   margin-top: 4px;
   font-weight: 600;
   color: var(--text-primary);
-}
-
-.day-name {
-  font-weight: 600;
-  color: var(--accent);
-  margin-top: 6px;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
 }
 
 @keyframes slideInUp {
@@ -426,7 +385,7 @@ body {
   }
 }
 
-/* Groups Tab Styling */
+/* ===== GROUPS TAB ===== */
 #groups-tab.tab-content.active {
   flex-direction: column;
   width: 100%;
@@ -434,8 +393,8 @@ body {
 
 .groups-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
   width: 100%;
 }
 
@@ -443,7 +402,7 @@ body {
   background: var(--card);
   border: 2px solid var(--border);
   border-radius: 12px;
-  padding: 20px;
+  padding: 18px;
   transition: all 300ms ease;
   overflow: hidden;
   position: relative;
@@ -471,24 +430,24 @@ body {
 }
 
 .group-header {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--accent);
-  margin-bottom: 15px;
+  margin-bottom: 14px;
   text-align: center;
 }
 
 .group-teams {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .team-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px;
+  gap: 10px;
+  padding: 9px 10px;
   background: rgba(0, 212, 255, 0.05);
   border-radius: 8px;
   transition: all 200ms ease;
@@ -496,73 +455,222 @@ body {
 
 .team-item:hover {
   background: rgba(0, 212, 255, 0.1);
-  padding-left: 15px;
+  padding-left: 14px;
 }
 
 .team-item .flag {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
-
 .team-item .name {
   color: var(--text-primary);
   font-weight: 500;
   flex: 1;
 }
 
-@media (max-width: 900px) {
-  .groups-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+/* ===== TABLET (≤ 1024px) ===== */
+@media (max-width: 1024px) {
+  .dates {
+    width: 240px;
+  }
+
+  .match-meta {
+    min-width: 150px;
+  }
+
+  .team-name {
+    font-size: 0.95rem;
   }
 }
 
-@media (max-width: 900px) {
+/* ===== TABLET PORTRAIT / LARGE MOBILE (≤ 768px) ===== */
+@media (max-width: 768px) {
   .container {
     flex-direction: column;
+    margin: 16px auto;
+    gap: 16px;
   }
 
+  /* Dates panel becomes a horizontal scroll strip */
   .dates {
     width: 100%;
     max-height: none;
-    display: flex;
     overflow-x: auto;
     overflow-y: hidden;
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .stage-selector {
+    display: none; /* moved to top bar below; hidden here for space */
+  }
+
+  /* Re-show stage selector above the horizontal date scroll on mobile */
+  .mobile-stage-selector {
+    display: block !important;
+    margin-bottom: 12px;
+    padding: 0 16px;
+  }
+
+  .dates-list {
+    display: flex;
+    flex-direction: row;
     gap: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+    width: max-content;
   }
 
   .date-btn {
-    min-width: 160px;
+    min-width: 120px;
     margin-bottom: 0;
+    padding: 11px 13px;
+    transform: none !important;
   }
 
+  .date-btn:hover,
+  .date-btn.active {
+    transform: none !important;
+  }
+
+  /* Match cards stack cleanly */
   .match-card {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .match-left {
+    width: 100%;
+    gap: 14px;
   }
 
   .match-meta {
     text-align: left;
     width: 100%;
     min-width: auto;
+    padding-left: 0;
+  }
+
+  /* Groups: 2 columns */
+  .groups-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+  }
+
+  .tab-content.active {
+    flex-direction: column;
+    gap: 16px;
   }
 }
 
-@media (max-width: 600px) {
+/* ===== MOBILE (≤ 480px) ===== */
+@media (max-width: 480px) {
+  .site-header {
+    padding: 18px 14px 20px;
+  }
+
   .site-header h1 {
-    font-size: 1.6rem;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+  }
+
+  .site-header .subtitle {
+    font-size: 0.72rem;
+    margin-top: 6px;
+  }
+
+  .tabs-header {
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .tab-btn {
+    padding: 7px 14px;
+    font-size: 0.82rem;
+  }
+
+  .container {
+    padding: 0 10px;
+    margin: 12px auto;
+  }
+
+  .date-btn {
+    min-width: 105px;
+    padding: 9px 11px;
+  }
+
+  .date-day {
+    font-size: 0.9rem;
+  }
+  .date-d {
+    font-size: 0.76rem;
   }
 
   .match-card {
-    padding: 12px;
+    padding: 13px;
+    gap: 12px;
   }
 
   .team-flag {
-    font-size: 1.8rem;
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
   }
 
   .team-name {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+  }
+
+  .stage {
+    font-size: 0.78rem;
+    padding: 4px 8px;
+  }
+
+  .date-time {
+    font-size: 0.76rem;
+  }
+
+  .groups-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .group-card {
+    padding: 13px;
+  }
+
+  .group-header {
+    font-size: 1.1rem;
+  }
+
+  .team-item {
+    padding: 7px 8px;
+    gap: 8px;
+  }
+  .team-item .flag {
+    font-size: 1.2rem;
+  }
+  .team-item .name {
+    font-size: 0.85rem;
+  }
+}
+
+/* ===== SMALL MOBILE (≤ 360px) ===== */
+@media (max-width: 360px) {
+  .groups-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header h1 {
+    font-size: 1.1rem;
+  }
+
+  .match-left {
+    gap: 10px;
+  }
+
+  .team-flag {
+    width: 36px;
+    height: 36px;
+    font-size: 1.7rem;
   }
 }

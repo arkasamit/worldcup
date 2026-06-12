@@ -20,7 +20,23 @@
 
     <main class="container">
       <div id="fixtures-tab" class="tab-content active">
+        <!-- Mobile-only stage selector (shown above date strip on small screens) -->
+        <div class="mobile-stage-selector" style="display: none; width: 100%">
+          <div
+            class="stage-selector"
+            style="border-bottom: none; margin: 0; padding: 0"
+          >
+            <label for="stage-filter-mobile">টুর্নামেন্ট পর্যায়:</label>
+            <select id="stage-filter-mobile">
+              <option value="group">গ্রুপ পর্যায়</option>
+              <option value="knockout">নক-আউট পর্যায়</option>
+              <option value="all">সব ম্যাচ</option>
+            </select>
+          </div>
+        </div>
+
         <aside class="dates">
+          <!-- Desktop stage selector (hidden on mobile via JS) -->
           <div class="stage-selector">
             <label for="stage-filter">টুর্নামেন্ট পর্যায়:</label>
             <select id="stage-filter">
@@ -31,6 +47,7 @@
           </div>
           <div id="dates"></div>
         </aside>
+
         <section class="fixtures" id="fixtures">
           <div class="placeholder">তারিখ নির্বাচন করুন ম্যাচ দেখার জন্য</div>
         </section>
@@ -42,5 +59,44 @@
     </main>
 
     <script src="script.js"></script>
+    <script>
+      // Sync mobile stage selector with desktop one
+      (function () {
+        function syncSelectors() {
+          var desktop = document.getElementById("stage-filter");
+          var mobile = document.getElementById("stage-filter-mobile");
+          if (!desktop || !mobile) return;
+
+          // Keep them in sync
+          desktop.addEventListener("change", function () {
+            mobile.value = desktop.value;
+          });
+          mobile.addEventListener("change", function () {
+            desktop.value = mobile.value;
+            desktop.dispatchEvent(new Event("change"));
+          });
+        }
+
+        function handleResponsive() {
+          var mobileSel = document.querySelector(".mobile-stage-selector");
+          var desktopSel = document.querySelector(".dates .stage-selector");
+          if (!mobileSel || !desktopSel) return;
+
+          if (window.innerWidth <= 768) {
+            mobileSel.style.display = "block";
+            desktopSel.style.display = "none";
+          } else {
+            mobileSel.style.display = "none";
+            desktopSel.style.display = "block";
+          }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+          syncSelectors();
+          handleResponsive();
+        });
+        window.addEventListener("resize", handleResponsive);
+      })();
+    </script>
   </body>
 </html>
