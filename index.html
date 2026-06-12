@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FIFA World Cup 2026 - Fixtures</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>⚽ FIFA World Cup 2026</h1>
+      <p class="subtitle">
+        Match Schedule - Bangladesh Time (প্রতিটি তারিখ দেখতে ক্লিক করুন)
+      </p>
+      <div class="tabs-header">
+        <button class="tab-btn active" data-tab="fixtures">ম্যাচ সূচি</button>
+        <button class="tab-btn" data-tab="groups">গ্রুপ</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <div id="fixtures-tab" class="tab-content active">
+        <aside class="dates">
+          <div class="stage-selector">
+            <label for="stage-filter">টুর্নামেন্ট পর্যায়:</label>
+            <select id="stage-filter">
+              <option value="group">গ্রুপ পর্যায়</option>
+              <option value="knockout">নক-আউট পর্যায়</option>
+              <option value="all">সব ম্যাচ</option>
+            </select>
+          </div>
+          <div id="dates"></div>
+        </aside>
+        <section class="fixtures" id="fixtures">
+          <div class="placeholder">তারিখ নির্বাচন করুন ম্যাচ দেখার জন্য</div>
+        </section>
+      </div>
+
+      <div id="groups-tab" class="tab-content">
+        <div id="groups-container" class="groups-grid"></div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
